@@ -26,7 +26,7 @@ const SeatChooser = ({ chosenDay, chosenSeat, updateSeat }) => {
     socket.on('seatsUpdated', (seats) => {
       dispatch(loadSeats(seats));
     });
-  }, [dispatch])
+  }, [dispatch, socket])
 
   const isTaken = (seatId) => {
     return (seats.some(item => (item.seat === seatId && item.day === chosenDay)));
