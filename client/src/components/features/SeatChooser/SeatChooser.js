@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Progress, Alert } from 'reactstrap';
-import { getSeats, loadSeats, getRequests } from '../../../redux/seatsRedux';
+import { getSeats, loadSeats, getRequests, loadSeatsRequest } from '../../../redux/seatsRedux';
 import './SeatChooser.scss';
 import io from 'socket.io-client';
 
@@ -12,6 +12,11 @@ const SeatChooser = ({ chosenDay, chosenSeat, updateSeat }) => {
 
   const socket = io();
 
+
+  
+  useEffect(() => {
+    dispatch(loadSeatsRequest());
+  }, [dispatch]);
 
   useEffect(() => {
 
@@ -46,6 +51,7 @@ const SeatChooser = ({ chosenDay, chosenSeat, updateSeat }) => {
       { (requests['LOAD_SEATS'] && requests['LOAD_SEATS'].success) && <div className="seats">{[...Array(50)].map((x, i) => prepareSeat(i+1) )}</div>}
       { (requests['LOAD_SEATS'] && requests['LOAD_SEATS'].pending) && <Progress animated color="primary" value={50} /> }
       { (requests['LOAD_SEATS'] && requests['LOAD_SEATS'].error) && <Alert color="warning">Couldn't load seats...</Alert> }
+      Seats taken: {(seats.filter(item => (item.day === chosenDay))).length}/50
     </div>
   )
 }
