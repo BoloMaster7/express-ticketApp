@@ -7,6 +7,7 @@ const socket = require('socket.io');
 const mongoose = require('mongoose');
 const app = express();
 
+// let uri = 'mongodb://bolomaster7:MongoTest1@<host>:27017/@cluster0.wzu9bjs.mongodb.net/?retryWrites=true&w=majority';
 
 //import routes
 const testimonialRoutes = require('./routes/testimonials.routes.js');
@@ -46,8 +47,15 @@ io.on('connection', (socket) => {
 
 
 // connects our backend code with the database
-mongoose.connect('mongodb://localhost:27017/newVaveDB', { useNewUrlParser: true });
+// mongoose.connect('mongodb://localhost:27017/newVaveDB', { useNewUrlParser: true });
+
+mongoose.connect('mongodb+srv://bolomaster7:MongoTest1@cluster0.wzu9bjs.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true });
 const db = mongoose.connection;
+
+
+// mongoose.connect(uri, { useNewUrlParser: true }, (err, db) => {
+//   // handle db
+// });
 
 db.once('open', () => {
   console.log('Connected to the database');
