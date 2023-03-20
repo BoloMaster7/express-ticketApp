@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
 
-const concertSchema = new mongoose.Schema({
-    performer: { type: String, required: true },
-    genre: { type: String, required: true },
-    price: { type: Number, required: true },
+const seatSchema = new mongoose.Schema({
     day: { type: Number, required: true },
-    image: { type: String, required: true },
+    seat: { type: Number, required: true },
+    client: { type: String, required: true },
+    email: { type: String, required: true },
 });
 
-module.exports = mongoose.model('Concert', concertSchema); 
+module.exports = mongoose.model('Seat', seatSchema);
