@@ -49,7 +49,7 @@ io.on('connection', (socket) => {
 // connects our backend code with the database
 // mongoose.connect('mongodb://localhost:27017/newVaveDB', { useNewUrlParser: true });
 
-mongoose.connect('mongodb+srv://bolomaster7:MongoTest1@cluster0.wzu9bjs.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true });
+mongoose.connect('mongodb+srv://bolomaster7:fsQplixa7kUkDpbt@cluster0.wzu9bjs.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true });
 const db = mongoose.connection;
 
 
