@@ -9,6 +9,17 @@ const app = express();
 
 // let uri = 'mongodb://bolomaster7:MongoTest1@<host>:27017/@cluster0.wzu9bjs.mongodb.net/?retryWrites=true&w=majority';
 
+
+
+let uri = "";
+const NODE_ENV = process.env.NODE_ENV;
+
+if (NODE_ENV === "production")
+  uri =
+    "mongodb+srv://m9KEMMlW5XB:ptY7Y3Stqkx3IAZPo3fQzmqbMwkdFfBNN@cluster0.cpy2a7a.mongodb.net/NewWaveDB?retryWrites=true&w=majority";
+else if (NODE_ENV === "test") uri = "mongodb://localhost:27017/NewWaveDBtest";
+else uri = "mongodb://localhost:27017/NewWaveDB";
+
 //import routes
 const testimonialRoutes = require('./routes/testimonials.routes.js');
 const concertsRoutes = require('./routes/concerts.routes.js');
@@ -37,7 +48,9 @@ app.use((req, res) => {
 });
 
 const server = app.listen(process.env.PORT || 8000, () => {
-  console.log('Server is running on port: 8000');
+  if (NODE_ENV !== "test") {
+    console.log("Server is running on port: 8000");
+  };
 });
 const io = socket(server);
 
@@ -61,3 +74,5 @@ db.once('open', () => {
   console.log('Connected to the database');
 });
 db.on('error', err => console.log('Error ' + err));
+
+module.exports = server;
