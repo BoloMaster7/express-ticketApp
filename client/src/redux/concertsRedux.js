@@ -2,7 +2,10 @@ import axios from 'axios';
 import { API_URL } from '../config';
 
 /* SELECTORS */
-export const getConcerts = ({ concerts }) => concerts.data;
+export const getConcerts = ({ concerts, seats }) => concerts.data.map(concert=>({
+  ...concert,
+  seats: 50 - seats.data.filter(seat=>seat.day===concert.day).length
+})) ;
 export const getRequest = ({ concerts }) => concerts.request;
 
 /* ACTIONS */
