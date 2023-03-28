@@ -41,8 +41,8 @@ exports.getById = async (req, res) => {
 exports.createConcert = async (req, res) => {
   try {
 
-    const { performer, genre, price, day, image } = req.body;
-    const newConcert = new Concert({ performer, genre, price, day, image});
+    const { performer, genre, price, day, image, tickets } = req.body;
+    const newConcert = new Concert({ performer, genre, price, day, image, tickets});
     await newConcert.save();
     res.json({ message: 'OK' });
 
