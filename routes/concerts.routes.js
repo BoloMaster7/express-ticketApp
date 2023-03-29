@@ -3,6 +3,8 @@ const db = require('../db.js');
 const uuid = require('uuid').v4;
 const router = express.Router();
 
+var sanitize = require('mongo-sanitize');
+
 router.route('/concerts').get((req, res) => {
     res.json(db.concerts);
 });
@@ -17,7 +19,7 @@ router.route('/concerts/:id').get((req, res) => {
 });
 
 router.route('/concerts').post((req, res) => {
-    const { performer, genre, price, day, image } = req.body;
+    const { performer, genre, price, day, image } = sanitaze(req.body);
     const id = uuid();
     const newConcert = { id: id, performer, genre, price, day, image };
     db.concerts.push(newConcert);

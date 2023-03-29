@@ -6,7 +6,7 @@ const path = require('path');
 const socket = require('socket.io');
 const mongoose = require('mongoose');
 const app = express();
-
+const helmet = require('helmet');
 // let uri = 'mongodb://bolomaster7:MongoTest1@<host>:27017/@cluster0.wzu9bjs.mongodb.net/?retryWrites=true&w=majority';
 
 
@@ -25,6 +25,7 @@ const testimonialRoutes = require('./routes/testimonials.routes.js');
 const concertsRoutes = require('./routes/concerts.routes.js');
 const seatsRoutes = require('./routes/seats.routes.js');
 
+app.use(helmet());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
