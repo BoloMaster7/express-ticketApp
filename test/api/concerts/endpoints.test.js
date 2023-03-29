@@ -14,12 +14,21 @@ describe('GET /api/concerts', () => {
     await testConcertOne.save();
   });
 
-  it('should return a concert by day', async () => {
-    const res = await request(server).get('/api/concerts/day/1');
+  it('should return concerts', async () => {
+    const res = await request(server).get('/api/concerts');
     expect(res.status).to.equal(200);
     expect(res.body).to.be.an('array');
-    expect(res.body.length).to.be.equal(1);
+    expect(res.body.length).to.be.equal(3);
   });
+
+  
+  it('should return a concert by id', async () => {
+    const res = await request(server).get('/api/concerts/5d9f1140f10a81216cfd4408');
+    expect(res.status).to.equal(200);
+    expect(res.body).to.be.an('object');
+    expect(res.body).to.not.be.null;
+  });
+
 
   after(async () => {
     await Concert.deleteMany({});
