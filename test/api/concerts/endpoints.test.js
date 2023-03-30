@@ -26,6 +26,7 @@ describe('GET /api/concerts', () => {
     const res = await request(server).get('/api/concerts/5d9f1140f10a81216cfd4408');
     expect(res.status).to.equal(200);
     expect(res.body).to.be.an('object');
+    console.log('test', res.body)
     expect(res.body).to.not.be.null;
   });
 
