@@ -9,10 +9,7 @@ const expect = chai.expect;
 const request = chai.request;
 
 describe('GET /api/concerts', () => {
-  before(async () => {
-    const testConcertOne = new Concert({ _id: '5d9f1140f10a81216cfd4408', performer: 'Test Performer One', genre: 'Test Genre One', price: 40, day: 1, image: 'Test Image' });
-    await testConcertOne.save();
-  });
+
 
   it('should return concerts', async () => {
     const res = await request(server).get('/api/concerts');
@@ -23,7 +20,7 @@ describe('GET /api/concerts', () => {
 
   
   it('should return a concert by id', async () => {
-    const res = await request(server).get('/api/concerts/5d9f1140f10a81216cfd4408');
+    const res = await request(server).get('/api/concerts/1');
     expect(res.status).to.equal(200);
     expect(res.body).to.be.an('object');
     console.log('test', res.body)
